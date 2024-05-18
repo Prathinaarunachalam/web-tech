@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital information system</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="head" style="padding-left: 30px; background-color: rgb(13, 115, 141); height: 30px; padding-top: 8px;">
+        <i class="fa fa-facebook" style="color: white;"></i>
+        <i class="fa fa-twitter" style="padding-left:15px;color: white;"></i>
+        <i class="fa fa-instagram" style="padding-left:15px;color: white;"></i>
+        <i class="fa fa-youtube" style="padding-left:15px;color: white;"></i>
+        <i class="fa fa-linkedin" style="padding-left:15px;color: white;"></i> 
+        <b style="padding-left: 930px; color: white;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: 14px;">Privacy Policy   |   Disclaimer   |   Contact</b>
+    </div>
+    <header>
+      <nav style="display: flex; justify-content: space-between;  background-color: #ffffff; color: white; padding-top: 10px">
+            <div style="height: 40px; ">
+                <img src="assets/logo.png" alt="Company Logo" style="height: 100%;">
+            </div>
+            <div style="padding-left: 30px;">
+                <input type="text" placeholder="Search....." style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  color: black; padding: 6px; margin-right: 4px;border-radius: 8px; width: 350px; background-color: rgb(223, 230, 236);">
+                <button onclick="search()" style="padding: 5px 10px; cursor: pointer; background-color: #fffefe; color: rgb(0, 0, 0); border-color: black;border-radius: 8px;">Go</button>
+            </div>
+            <div>
+                <a href="tel:+123456789" style="color: rgb(0, 0, 0); text-decoration: none; margin-left: 20px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Emergency: +123456789</a>
+                <a href="tel:+987654321" style="color: rgb(7, 0, 0); text-decoration: none; margin-left: 20px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Helpline: +987654321</a>
+                <button id="appointment-button" style="padding: 5px 10px; cursor: pointer; background-color: #fffefe; color: rgb(0, 0, 0); border-color: black;border-radius: 20px; margin-left: 20px;">Book an Appointment</button>
+            </div>
+        </nav>
+
+<div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
+<div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgb(215, 255, 252); padding: 20px; border-radius: 8px; z-index: 1000;">
+    <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Book an Appointment</h3><br>
+    <form style="border-radius: 20px;">
+        <label for="name">Name:</label><br><br>
+        <input type="text" id="name" name="name" style="border-radius: 5px;"><br><br>
+        <label for="email">Email:</label><br><br>
+        <input type="email" id="email" name="email"style="border-radius: 5px;"><br><br>
+        <label for="date">Date:</label><br><br>
+        <input type="date" id="date" name="date"style="border-radius: 5px;"><br><br>
+        <label for="time">Time:</label><br><br>
+        <input type="time" id="time" name="time"style="border-radius: 5px;"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("appointment-button").addEventListener("click", function() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("popup").style.display = "block";
+        setTimeout(function() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popup").style.display = "none";
+        }, 5000); // close the popup after 5 seconds
+    });
+</script>
+        <hr>
+    </header>
+    <div class="navbar">
+        <a href="#home"  style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn" style="padding-left: 25px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Patient Care
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content"  style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Find a Doctor</a>
+                <a href="#">Surgery-Assured price</a>
+                <a href="#">Clinical Qualities and outcomes</a>
+                <a href="#">Service Excellence</a>
+                <a href="#">Patients Testimonials</a>
+                <a href="#">Value added services</a>
+                <a href="#">Health and Lifestyle</a>
+                <a href="#">Pay Online</a>
+                <a href="#">Medical Field</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Centres of Excellence
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content"  style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Cardiology</i></a>
+                <a href="#">Orthopedics</a>
+                <a href="#">Spine</a>
+                <a href="#">Neurology and Neurosurgery</a>
+                <a href="#">Gastroenterology</a>
+                <a href="#">Oncology</a>
+                <a href="#">Transplants</a>
+                <a href="#">ICU</a>
+                <a href="#">Emergency</a>
+                <a href="#">Preventive Health</a>
+                <a href="#">Robotics</a>
+                <a href="#">Bariatric surgery</a>
+                <a href="#">Nephrology & Urology</a>
+                <a href="#">Colorectal Surgery</a>
+                <a href="#">Obstetrics and Gynaecology</a>
+                <a href="#">Pulmonology</a>
+                <a href="#">Ear, Throat and Nose</a>
+                <a href="#">Vascular Surgery</a>
+                <a href="#">Pediatrics</a>
+                <a href="#">Dermatology</a>
+                <a href="#">Critical Care</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"  style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Health Information
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content"  style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Diseases and Conditions</a>
+                <a href="#">Tests and Procedures</a>
+                <a href="#">Medical Glossary Decoded</a>
+                <a href="#">Understanding Investigations</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"  style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">International Patient
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Plan Your Trip</a>
+                <a href="#">Online Consultation</a>
+                <a href="#">Visa</a>
+                <a href="#">Life Saver Insurance</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Academics and Research
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Courses</a>
+                <a href="#">Academics</a>
+                <a href="#">Clinical Research</a>
+                <a href="#">Honors List</a>
+                <a href="#">Life Saver Torch-Alumini Network</a>
+                <a href="#">The Life Saver University - NewYork</a>
+                <a href="#">Life Saver Knowledge Series</a>
+                <a href="#">New In Medicine</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Hospitals
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Hospitals in Chennai</a>
+                <a href="#">Hospitals in New York</a>
+                <a href="#">Hospitals in Delhi</a>
+                <a href="#">Hospitals in Mumbai</a>
+                <a href="#">Hospitals in Hyderabad</a>
+                <a href="#">Hospitals in Paris</a>
+                <a href="#">Hospitals in Bangalore</a>
+                <a href="#">Hospitals in </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Contact Us
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Post a Query</a>
+                <a href="#">Contact Doctors Online</a>
+                <a href="#">Book Physical Appointment</a>
+                <a href="#">Life Saver Lifeline</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Corporate
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                <a href="#">Company Overview</a>
+                <a href="#">Corporate Policies</a>
+                <a href="#">Management</a>
+                <a href="#">Corporate Governance</a>
+                <a href="#">Corporate Actions</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Awards and Accolades</a>
+                <a href="#">Career</a>
+                <a href="#">News and Media</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="slider" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+        <div class="slides" style="height: 500px;width: 1000px;">
+            <div class="slide fade">
+                <img src="assets/cardio.jpg" alt="Image 1">
+                <div class="overlay"><b>CARDIOLOGY DEPARTMENT</b></div>
+            </div>
+            <div class="slide fade">
+                <img src="assets/gastroenterology.webp" alt="Image 2">
+                <div class="overlay"><b>GASTROENTEROLOGY DEPARTMENT</b></div>
+            </div>
+            <div class="slide fade">
+                <img src="assets/nephrology.jpg" alt="Image 3">
+                <div class="overlay"><b>NEPHROLOGY DEPARTMENT</b></div>
+            </div>
+            <div class="slide fade">
+                <img src="assets/neurology.webp" alt="Image 3">
+                <div class="overlay"><b>NEUROLOGY DEPARTMENT</b></div>
+            </div>
+            <div class="slide fade">
+                <img src="assets/oncology.png" alt="Image 3">
+                <div class="overlay"><b>ONCOLOGY DEPARTMENT</b></div>
+            </div>
+        </div>
+    </div>
+    <div class="card-container1">
+        <div class="cardd">
+            <img src="assets/appoint.png" alt="Appointment">
+            <p style="padding-top: 0px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Book your appointment</p>
+        </div>
+        <div class="cardd">
+            <img src="assets/checkup.jpg" alt="checkup"> 
+            <p style="padding-top: 0px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Regular checkup</p>
+        </div>
+        <div class="cardd">
+            <img src="assets/oc1.png" alt="Consultation">
+            <p style="padding-top: 0px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Online Consultation</p>
+        </div>
+        <div class="cardd">
+            <img src="assets/me.png" alt="Medicine">
+            <p style="padding-top: 0px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Buy your medicine</p>
+        </div>
+        <div class="cardd">
+            <img src="assets/hos.jpg" alt="Find Hospital">
+            <p style="padding-top: 0px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Find hospital nearby</p>
+        </div>
+        <div class="cardd">
+            <img src="assets/record.jpg" alt="Record">
+            <p style="padding-top: 0px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Monitor health records</p>
+        </div>   
+    </div>
+    <br><br>
+    <nav>
+        <ul style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+            <li><a href="#">Specialties</a></li>
+            <li><a href="#">Procedures</a></li>
+            <li><a href="#">ProHealth</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="image-section">
+            <img src="assets/doctors1.avif" alt="Main Image">
+        </div>
+        <div class="cards-section">
+            <div class="card">
+                <img src="assets/cardiology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Cardiology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/neurology1.png" alt="Cardiology" style="width: 50px;height: 65px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Neurology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/gastroenterology1.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Gastroenterology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/orthopedics.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Orthopedics</h3>
+            </div>
+            <div class="card">
+                <img src="assets/oncology1.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Oncology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/gynaecology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Gynaecology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/dermatology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Dermatology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/optham.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Ophthalmology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/pediatrics.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Pediatrics</h3>
+            </div>
+            <div class="card">
+                <img src="assets/endo.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Endocrinology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/nephrology2.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Urology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/urology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Nephrology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/pulmonology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Pulmonology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/Rheumatology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Rheumatology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/neurology1.png" alt="Cardiology" style="width: 50px;height: 65px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Neurosurgery</h3>
+            </div>
+            <div class="card">
+                <img src="assets/radiology.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Radiology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/plastic.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Plastic Surgery</h3>
+            </div>
+            <div class="card">
+                <img src="assets/neo.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Neonatology</h3>
+            </div>
+            <div class="card">
+                <img src="assets/vascular.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Vascular Surgery</h3>
+            </div>
+            <div class="card">
+                <img src="assets/psycho.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Psychiatry</h3>
+            </div>
+            <div class="card">
+                <img src="assets/dentist.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Dentistry</h3>
+            </div>
+            <div class="card">
+                <img src="assets/ent.png" alt="Cardiology" style="width: 50px;height: 50px;"><br>
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">ENT</h3>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container" style="background-color: rgb(216, 252, 252);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;height: 200px;">
+            <div class="text-and-cards">
+                <div class="description">
+                    <h1 style="padding-left: 30px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Why Choose Life Saver Hospitals?</h1>
+                    <p style="padding-left: 30px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Established by Dr Prathap C Reddy in 1983, Apollo Healthcare has a robust presence across <br>the healthcare ecosystem. From routine wellness & preventive health care to innovative life-
+                        <br>saving treatments and diagnostic services, Life Saver Hospitals has touched more than 200 
+                        <br>million lives from over 120 countries</p>
+                </div>
+                <div class="card-container" style="padding-top: 30px;">
+                    <div class="card">
+                        <img src="assets/card1.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;">
+                        <h2">73+ <br>Largest private network of Hospitals</h2>
+                    </div>
+                    <div class="card">
+                        <img src="assets/card2.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;">
+                        <h2">400+ <br>Clinics across India</h2>
+                    </div>
+                    <div class="card">
+                        <img src="assets/card3.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;">
+                        <h2">1100+ <br>Diagnostic centres across India</h2>
+                    </div>
+                    <div class="card">
+                        <img src="assets/card1.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;">
+                        <h2">5000+ <br>Pharmacies</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="assets/dochos.webp" alt="Descriptive Image">
+            </div>
+        </div>
+    </div>
+    <div class="container" style="background-color: #ffffff;">
+        <div class="cards-and-description">
+            <div class="description-top">
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">LOCATION</p>
+                <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hospitals In India</h1><br>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Life saver Group constitutes the best hospital in India with over 10,000<br>
+                beds across 73 hospitals, 5000+ pharmacies, over 300 clinics, 1100+ diagnostic<br>
+                centres and 200+ Telemedicine units.</p>
+            </div>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="assets/m1.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Ahmedabad</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m2.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3  style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Aragonda</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m3.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Bangalore</h3>
+                    
+                </div>
+                <div class="card">
+                    <img src="assets/m4.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Bhubaneshwar</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m5.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Bilaspur</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m6.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Bhopal</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m7.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Chennai</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m8.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Delhi</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m9.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Guwahati</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m1.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hyderabad</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m2.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Indore</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m3.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kakinada</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m4.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3  style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Karur</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m5.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3  style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kolkata</h3>
+                    
+                </div>
+                <div class="card">
+                    <img src="assets/m6.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kochi</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m7.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Lucknow</h3>
+                    
+                </div>
+                <div class="card">
+                    <img src="assets/m8.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Madurai</h3>
+                    
+                </div>
+                <div class="card">
+                    <img src="assets/m9.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Mumbai</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m1.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Mysore</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m2.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Nashik</h3>
+                </div>
+                <div class="card">
+                    <img src="assets/m3.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Nellore</h3>
+                    
+                </div>
+                <div class="card">
+                    <img src="assets/m4.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3  style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Noida</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m5.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Rourkela</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m9.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Trichy</h3>
+                     
+                </div>
+                <div class="card">
+                    <img src="assets/m8.png" alt="Cardiology" style="width: 50px;height: 50px;padding-top: 2px;"><br>
+                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Visakhapatnam</h3>
+                </div>
+                
+                
+            </div>
+        </div>
+        <div class="image-container1">
+            <img src="assets/hospi.jpg" alt="Descriptive Image">
+        </div>
+    </div>
+    <footer style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Get A Lot Of Information About Us</h3>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Subscribe Our Newsletter</p>
+                <br>
+                <form action="#">
+                    <input type="email" placeholder="Enter your email id" required style="border-radius: 3px;">
+                    <br>
+                    <br>
+                    <button type="submit" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 3px;">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-section">
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Emergency</h3>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">1066</p>
+            </div>
+            <div class="footer-section">
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">LifeSaver Lifeline International</h3>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">+91 4043441066</p>
+            </div>
+            <div class="footer-section" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Health Help Line</h3>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">1860-500-1066</p>
+            </div>
+            <div class="footer-section" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Patient Care</h3>
+                <ul>
+                    <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Find A Doctor</li>
+                    <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Medical Services</li>
+                    <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Patient Testimonials</li>
+                    <!-- Add more list items as needed -->
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="footer-links">
+            <ul style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">About Apollo</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hospitals</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">News & Media</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Centres Of Excellence</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Corporate</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Academics & Research</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Contact Us</li>
+                <!-- Add more list items as needed -->
+            </ul>
+        </div>
+        <div class="footer-bottom" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">© Copyright 2024. Apollo Hospitals Group. All Rights Reserved.</p>
+            <ul>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Privacy policy</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Disclaimer</li>
+                <li style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Contact</li>
+            </ul>
+            <div class="share-price">
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Our share price May 16, 2024</p>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">BSE Closing: 5916.20 NSE Closing: 5931.70</p>
+            </div>
+            <div class="contact-info">
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Call Us Now +91 8069991061</p>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Book Health Check-Up</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function toggleForm() {
+            var form = document.getElementById("bookAppointmentForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            // You can handle form submission here, like sending data to a server
+            console.log("Form submitted!");
+        });
+    </script>
+    </body>
+</html>
